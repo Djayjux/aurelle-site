@@ -14,4 +14,26 @@ if (themeBtn) {
     document.documentElement.dataset.theme = next;
     localStorage.setItem('aurelle-theme', next);
   });
+// app.js — Add this to the bottom of the file
+
+/* Age Validation for Caregiver Application */
+document.addEventListener('DOMContentLoaded', () => {
+  const ageInput = document.getElementById('applicantAge');
+  
+  if (ageInput) {
+    const waBtn = document.getElementById('waApplyBtn');
+    const emailBtn = document.getElementById('emailApplyBtn');
+
+    function checkAge(e) {
+      const age = parseInt(ageInput.value, 10);
+      if (isNaN(age) || age < 18) {
+        e.preventDefault();
+        alert("You must be 18 years or older to apply as a caregiver.");
+      }
+    }
+
+    if (waBtn) waBtn.addEventListener('click', checkAge);
+    if (emailBtn) emailBtn.addEventListener('click', checkAge);
+  }
+});
 }
